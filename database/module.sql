@@ -1,11 +1,9 @@
 create table blogs(
     id serial primary key,
-    username varchar(255) not null,
     title text not null,
     image_id text not null,
     description text not null,
-    createAt timestamptz default now(),
-    foreign key (id) references administrator(id)
+    createAt timestamptz default now()
 );
 
 create table administrator (

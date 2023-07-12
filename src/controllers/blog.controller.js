@@ -5,15 +5,12 @@ const path = require("path");
 const blogs = async (req, res) => {
   const { title, description } = req.body;
   const { image } = req.files;
-  console.log(req.body);
   const imagename = `${uuid()}${path.extname(image.name)}`;
   image.mv(process.cwd() + "/uploads/" + imagename);
 
-  const username = await pg("select username from administrator where id = 1");
 
   await pg(
-    `insert into blogs (username, title, description, image_id) values($1, $2, $3,$4)`,
-    username[0].username,
+    `insert into blogs (title, description, image_id) values($1, $2, $3)`,
     title,
     description,
     imagename
